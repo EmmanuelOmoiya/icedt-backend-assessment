@@ -23,4 +23,10 @@ app.use(
 
   app.use(express.urlencoded({ extended: true }));
   app.use('/', routes);
+  // app.get('/photos', getPhotos);
+  // app.get('/',(req, res)=>{
+  //   res.json({
+  //     message: "Kindly visit `/photos` route to get the paginated list of photos"
+  //   })
+  // })
   export default app;

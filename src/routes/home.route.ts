@@ -1,7 +1,7 @@
-import express, { Router, Response } from 'express';
+import express, { Router, Response, Request } from 'express';
 
-const home = (res: Response) => {
-    res.send({
+const home = (req:Request, res: Response) => {
+    res.json({
         message: "Kindly visit `/photos` route to get the paginated list of photos"
     });
 }
