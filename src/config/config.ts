@@ -5,8 +5,9 @@ const config = {
             // @ts-ignore
     port: process.env.PORT,
     mongoose: {
-            // @ts-ignore
-        url: process.env.MONGODB_URL + (process.env.NODE_ENV) + "?retryWrites=true&w=majority",
+      // url: process.env.MONGODB_URL + (process.env.NODE_ENV) + "?retryWrites=true&w=majority",
+      // @ts-ignore
+        url: process.env.MONGODB_URL ,
         options: {
           useCreateIndex: true,
           useNewUrlParser: true,

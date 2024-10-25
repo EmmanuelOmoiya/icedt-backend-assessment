@@ -1,20 +1,21 @@
 import mongoose from 'mongoose'
 import app from './app'
-import { PhotoService } from './modules/photo/photo.service'
+import { fetchAndSaveData } from './modules/photo/photo.service'
 import config from './config/config';
 
 const setupDataFetching = (): void => {
             // @ts-ignore
-    PhotoService.fetchAndSaveData();
+    fetchAndSaveData();
     
     setInterval(() => {
             // @ts-ignore
-        PhotoService.fetchAndSaveData();
+        fetchAndSaveData();
     }, 60000);
 }
 
 const ConnectToMongoDB = async () => {
     try {
+        // @ts-ignore
         await mongoose.connect(config.mongoose.url).then(()=>{
             console.log('Connected to MongoDB...');
             server = app.listen(config.port, ()=>{

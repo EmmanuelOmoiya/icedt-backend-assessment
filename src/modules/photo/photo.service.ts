@@ -20,14 +20,15 @@ export interface PaginatedResponse {
     };
 }
 
-export const PhotoService = () => {
-    let apiUrl = 'https://jsonplaceholder.typicode.com/photos';
-    let dataStore = new Set();
-    
-    const fetchAndSaveData = async (): Promise<void> => {
+
+export const fetchAndSaveData = async (): Promise<void> => {
+        // let apiUrl = 'https://jsonplaceholder.typicode.com/photos';
+        let dataStore = new Set();
         try {
-            const response = await axios.get(apiUrl);
+            const response = await axios.get('https://jsonplaceholder.typicode.com/photos');
             const photos = response.data;
+            // @ts-ignore
+            console.log('Response: ', response[3] )
 
             photos.forEach((item: any) => {
                 dataStore.add(JSON.stringify(item));
@@ -45,11 +46,13 @@ export const PhotoService = () => {
             console.log(`Batch operation completed. Modified: ${result.modifiedCount}, Upserted: ${result.upsertedCount}`);
         } catch (error) {
             console.error('Error fetching and saving data:', error);
-            throw error;
+            // throw error;
+            return;
+            // return { "error": "Could not access `https://jsonplaceholder.typicode.com/photos` at this time, kindly chek your internet connection. " }
         }
     }
 
-    const getPaginatedPhotos = async (options: PaginationOptions): Promise<PaginatedResponse> => {
+    export const getPaginatedPhotos = async (options: PaginationOptions): Promise<PaginatedResponse> => {
         const { page, limit, orderBy, order } = options;
         const skip = (page - 1) * limit;
         const sort = { [orderBy]: order === 'desc' ? -1 : 1 };
@@ -80,7 +83,7 @@ export const PhotoService = () => {
         };
     }
 
-    const getMemoryPaginatedPhotos = (options: PaginationOptions) => {
+export const getMemoryPaginatedPhotos = (options: PaginationOptions) => {
         const { page, limit, orderBy, order } = options;
         // @ts-ignore
         const mpage = parseInt(page) || 1;
@@ -121,5 +124,3 @@ export const PhotoService = () => {
         return response;
     }
 
-    return { fetchAndSaveData, getPaginatedPhotos, getMemoryPaginatedPhotos }
-}
