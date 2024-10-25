@@ -1,0 +1,35 @@
+{
+  "name": "icedt-backend",
+  "version": "1.0.0",
+  "description": "Assessment for fullstack role at icedt.",
+  "main": "index.js",
+  "author": {
+    "name": "Emmanuel Omoiya",
+    "email": "emmanuelomoiya6@gmail.com",
+    "url": "https://emmanuelomoiya.vercel.app"
+  },
+  "scripts": {
+    "compile:watch": "tsc --build --watch",
+    "pre:dev": "cross-env NODE_ENV=development nodemon dist/index.js",
+    "start:dev": "concurrently --kill-others \"pnpm run compile:watch\" \"pnpm run pre:dev\"",
+    "start:prod": "nodemon dist/index.js"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "mongoose": "^8.7.2",
+    "typescript": "^5.6.3"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.7.9",
+    "concurrently": "^9.0.1",
+    "cross-env": "^7.0.3",
+    "nodemon": "^3.1.7"
+  }
+}
